@@ -1,0 +1,210 @@
+---
+title: "| RESEARCH PROTOCOL\n| \n| First-episode psychosis pharmacotherapy: an antipsychotics comparative effectiveness study \n"
+fontsize: 12pt
+geometry: margin=1in
+output:
+  bookdown::html_document2:
+    df_print: paged
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+    number_sections: yes
+    number_tables: yes
+    css: style.css
+  word_document:
+    reference_docx: ohdsi-protocol-style.docx
+  bookdown::pdf_document2:
+    keep_tex: yes
+    latex_engine: xelatex
+    md_extensions: +raw_attribute
+    number_sections: yes
+    includes:
+      before_body: title.tex
+header-includes:
+- \usepackage[numbers,sort&compress]{natbib}
+- \usepackage{booktabs}
+- \usepackage{longtable}
+- \usepackage{array}
+- \usepackage{multirow}
+- \usepackage{wrapfig}
+- \usepackage{float}
+- \usepackage{colortbl}
+- \usepackage{pdflscape}
+- \usepackage{tabu}
+- \usepackage{threeparttable}
+- \usepackage{threeparttablex}
+- \usepackage[normalem]{ulem}
+- \usepackage{makecell}
+- \usepackage{caption}
+- \usepackage{rotating}
+- \usepackage{multirow}
+- \usepackage{mwe,tikz}
+- \usepackage[percent]{overpic}
+- \usepackage{enumitem}
+- \usepackage{hyperref}
+- \newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+- \newcommand{\footerDate}{`r params$date`}
+- \input{header.tex}
+longtable: yes
+mainfont: Arial
+bibliography: Protocol.bib
+params:
+  date: '14-Apr-2025'
+  version: 0.0.1
+subtitle: 'Version: `r params$version`'
+link-citations: yes
+csl: bmj.csl
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+options(kableExtra.latex.load_packages = FALSE)
+library(kableExtra)
+library(dplyr)
+options(knitr.kable.NA = "")
+options(knitr.table.format = function() {
+  if (knitr::is_latex_output()) {
+    "latex"
+  } else if (knitr::is_html_output()) {
+    "html"
+  } else {
+    "pipe"
+  }
+})
+
+latex_table_font_size <- 8
+```
+
+# List of Abbreviations
+
+```{r abbreviations, echo=FALSE}
+abbreviations <- readr::read_delim(col_names = FALSE, delim = ";", trim_ws = TRUE, file = "
+  OHDSI; Observational Health Data Sciences and Informatics
+  CDM; Common data model
+  ICD-10; International Classification of Diseases, Tenth Revision
+  ICD10-CM; International Classification of Diseases, Tenth Revision, Clinical Modification
+  DALY; Disability-Adjusted Life Years
+  FEP; First-Episode Psychosis
+  SGA; Second-generation antipsychotic
+  FGA; First-generation antipsychotic
+  AP; Antipsychotic
+")
+
+tab <- kable(abbreviations, col.names = NULL, linesep = "", booktabs = TRUE)
+
+if (knitr::is_latex_output()) {
+  tab %>% kable_styling(latex_options = c("striped", "hold_position"), 
+                        font_size = latex_table_font_size)
+} else {
+  tab %>% kable_styling(bootstrap_options = "striped")
+}
+```
+
+\clearpage
+
+# Responsible Parties
+
+## Investigators
+
+## Disclosures
+
+This study is undertaken within Observational Health Data Sciences and Informatics (OHDSI), an open collaboration.
+\clearpage
+
+# Abstract
+
+**Background and Significance**: 
+Schizophrenia is a severe neuropsychiatric disorder which often lead to a significant functional and cognitive impairment. Although its prevalence is relatively low [1], schizophrenia is one of the biggest causes of DALYs worldwide [2]. The term 'first-episode schizophrenia' is often used interchangeably with the term 'first-episode psychosis', since distinguishing former from the latter is a complex and often impossible clinical task, because clinical picture and further manifestations of the disorder may be multimodal and evolving. Studies show that interventions at the earliest stages of the disorder are important for  ameliorating the course of illness [3, 4]. Treatment with antipsychotics is one of such interventions [5]. However, the choice of medication for treatment of FEP requires further investigation. Current clinical practice guidelines mention the heterogeneity of clinical trial designs and limited number of head-to-head comparisons as factors preventing from creating an evidence-based ranking of SGAs and FGAs [6].
+
+**Study Aims**: 
+This study aims at creating a head-to-head comparison framework for the effectiveness several commonly used FGAs and SGAs when used in treating patients with first-episode psychoses.
+
+**Study Description**: 
+
+* **Population**: 
+
+* **Comparators**:
+  
+* **Outcomes**:
+  
+* **Design**: 
+
+* **Timeframe**: 
+
+\clearpage
+
+# Amendments and Updates
+
+
+
+# Milestones
+
+
+
+# Rationale and Background
+
+# Study Objectives
+
+# Research Methods
+
+## Study Design
+
+This study uses `CohortMethod` [@Schuemie2020-fa].
+
+## Data Sources
+
+## Study Population
+
+## Exposure Comparators
+
+## Outcomes {#outcomes}
+
+## Analysis
+
+# Sample Size and Study Power {#sample-size}
+
+# Strengths and Limitations {#strengths-limitations}
+
+# Protection of Human Subjects
+
+# Management and Reporting of Adverse Events and Adverse Reactions
+
+# Plans for Disseminating and Communicating Study Results
+
+\clearpage
+
+# References {-}
+```{r references, echo=FALSE}
+references <- readr::read_delim(col_names = FALSE, delim = "|", trim_ws = TRUE, file = "
+  1| Moreno-Küstner B, Martín C, Pastor L. Prevalence of psychotic disorders and its association with methodological issues. A systematic review and meta-analyses. PLoS One. 2018;13(4):e0195687. Published 2018 Apr 12. doi:10.1371/journal.pone.0195687
+  2| GBD 2019 Mental Disorders Collaborators. Global, regional, and national burden of 12 mental disorders in 204 countries and territories, 1990-2019: a systematic analysis for the Global Burden of Disease Study 2019. Lancet Psychiatry. 2022;9(2):137-150. doi:10.1016/S2215-0366(21)00395-3
+  3| Nordentoft M, Rasmussen JO, Melau M, Hjorthøj CR, Thorup AA. How successful are first episode programs? A review of the evidence for specialized assertive early intervention. Curr Opin Psychiatry. 2014;27(3):167-172. doi:10.1097/YCO.0000000000000052
+  4| Correll CU, Galling B, Pawar A, et al. Comparison of Early Intervention Services vs Treatment as Usual for Early-Phase Psychosis: A Systematic Review, Meta-analysis, and Meta-regression. JAMA Psychiatry. 2018;75(6):555-565. doi:10.1001/jamapsychiatry.2018.0623
+  5| Alvarez-Jiménez M, Parker AG, Hetrick SE, McGorry PD, Gleeson JF. Preventing the second episode: a systematic review and meta-analysis of psychosocial and pharmacological trials in first-episode psychosis. Schizophr Bull. 2011;37(3):619-630. doi:10.1093/schbul/sbp129
+  6| Keepers GA, Fochtmann LJ, Anzia JM, et al. The American Psychiatric Association Practice Guideline for the Treatment of Patients With Schizophrenia. Am J Psychiatry. 2020;177(9):868-872. doi:10.1176/appi.ajp.2020.177901
+")
+
+tab <- kable(references, col.names = NULL, linesep = "", booktabs = TRUE)
+
+if (knitr::is_latex_output()) {
+  tab %>% kable_styling(latex_options = c("striped", "hold_position"), 
+                        font_size = latex_table_font_size)
+} else {
+  tab %>% kable_styling(bootstrap_options = "striped")
+}
+```
+
+<div id="refs"></div>
+
+\clearpage
+
+\centerline{\Huge Appendix}
+
+# (APPENDIX) Appendix {-}
+
+# Exposure Cohort Definitions
+
+
+# Outcome Cohort Definitions
+
+# Negative Control Concepts {#negative-controls}
