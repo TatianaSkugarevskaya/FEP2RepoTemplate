@@ -1,0 +1,11 @@
+atlas_id,cohort_id,cohort_name,logic_description,generate_stats
+1792011,1,risperidone,NA,TRUE
+1792119,2,haloperidol,NA,TRUE
+1792125,3,aripiprazole,NA,TRUE
+1792127,4,brexpiprazole,NA,TRUE
+1792129,5,olanzapine,NA,TRUE
+1792130,6,quetiapine,NA,TRUE
+1792131,7,ziprazidone,NA,TRUE
+1792141,8,lurazidone,NA,TRUE
+1792143,9,paliperidone,NA,TRUE
+1792012,10,rehospitalization,NA,TRUE

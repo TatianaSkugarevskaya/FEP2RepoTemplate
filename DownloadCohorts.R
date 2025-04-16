@@ -22,53 +22,74 @@ baseUrl <- "https://atlas-demo.ohdsi.org/WebAPI"
 cohortDefinitionSet <- ROhdsiWebApi::exportCohortDefinitionSet(
   baseUrl = baseUrl,
   cohortIds = c(
-    1778211, # All exposures - celecoxib
-    1790989, # All exposures - diclofenac
-    1780946 # GI Bleed
+    1792011, # [PP25 FEP2] FEPwRisperidone
+    1792119, # [PP25 FEP2] FEPwHaloperidol
+    1792125, # [PP25 FEP2] FEPwAripiprazole
+    1792127, # [PP25 FEP2] FEPwBrexpiprazole
+    1792129, # [PP25 FEP2] FEPwOlanzapine
+    1792130, # [PP25 FEP2] FEPwQuetiapine
+    1792131, # [PP25 FEP2] FEPwZiprazidone
+    1792141, # [PP25 FEP2] FEPwLurasidone
+    1792143, # [PP25 FEP2] FEPwPaliperidone
+    1792012  # [PP25 FEP2] Rehospitalization
   ),
   generateStats = TRUE
 )
 
 # Rename cohorts
-cohortDefinitionSet[cohortDefinitionSet$cohortId == 1778211,]$cohortName <- "celecoxib"
-cohortDefinitionSet[cohortDefinitionSet$cohortId == 1790989,]$cohortName <- "diclofenac"
-cohortDefinitionSet[cohortDefinitionSet$cohortId == 1780946,]$cohortName <- "GI Bleed"
+cohortDefinitionSet[cohortDefinitionSet$cohortId == 1792011,]$cohortName <- "risperidone"
+cohortDefinitionSet[cohortDefinitionSet$cohortId == 1792119,]$cohortName <- "haloperidol"
+cohortDefinitionSet[cohortDefinitionSet$cohortId == 1792125,]$cohortName <- "aripiprazole"
+cohortDefinitionSet[cohortDefinitionSet$cohortId == 1792127,]$cohortName <- "brexpiprazole"
+cohortDefinitionSet[cohortDefinitionSet$cohortId == 1792129,]$cohortName <- "olanzapine"
+cohortDefinitionSet[cohortDefinitionSet$cohortId == 1792130,]$cohortName <- "quetiapine"
+cohortDefinitionSet[cohortDefinitionSet$cohortId == 1792131,]$cohortName <- "ziprazidone"
+cohortDefinitionSet[cohortDefinitionSet$cohortId == 1792141,]$cohortName <- "lurazidone"
+cohortDefinitionSet[cohortDefinitionSet$cohortId == 1792143,]$cohortName <- "paliperidone"
+cohortDefinitionSet[cohortDefinitionSet$cohortId == 1792012,]$cohortName <- "rehospitalization"
 
 # Re-number cohorts
-cohortDefinitionSet[cohortDefinitionSet$cohortId == 1778211,]$cohortId <- 1
-cohortDefinitionSet[cohortDefinitionSet$cohortId == 1790989,]$cohortId <- 2
-cohortDefinitionSet[cohortDefinitionSet$cohortId == 1780946,]$cohortId <- 3
+cohortDefinitionSet[cohortDefinitionSet$cohortId == 1792011,]$cohortId <- 1
+cohortDefinitionSet[cohortDefinitionSet$cohortId == 1792119,]$cohortId <- 2
+cohortDefinitionSet[cohortDefinitionSet$cohortId == 1792125,]$cohortId <- 3
+cohortDefinitionSet[cohortDefinitionSet$cohortId == 1792127,]$cohortId <- 4
+cohortDefinitionSet[cohortDefinitionSet$cohortId == 1792129,]$cohortId <- 5
+cohortDefinitionSet[cohortDefinitionSet$cohortId == 1792130,]$cohortId <- 6
+cohortDefinitionSet[cohortDefinitionSet$cohortId == 1792131,]$cohortId <- 7
+cohortDefinitionSet[cohortDefinitionSet$cohortId == 1792141,]$cohortId <- 8
+cohortDefinitionSet[cohortDefinitionSet$cohortId == 1792143,]$cohortId <- 9
+cohortDefinitionSet[cohortDefinitionSet$cohortId == 1792012,]$cohortId <- 10
 
 # Save the cohort definition set
 # NOTE: Update settingsFileName, jsonFolder and sqlFolder
 # for your study.
 CohortGenerator::saveCohortDefinitionSet(
   cohortDefinitionSet = cohortDefinitionSet,
-  settingsFileName = "inst/sampleStudy/Cohorts.csv",
-  jsonFolder = "inst/sampleStudy/cohorts",
-  sqlFolder = "inst/sampleStudy/sql/sql_server",
+  settingsFileName = "inst/Cohorts.csv",
+  jsonFolder = "inst/cohorts",
+  sqlFolder = "inst/sql/sql_server",
 )
-
 
 # Download and save the negative control outcomes
-negativeControlOutcomeCohortSet <- ROhdsiWebApi::getConceptSetDefinition(
-  conceptSetId = 1885090,
-  baseUrl = baseUrl
-) %>%
-  ROhdsiWebApi::resolveConceptSet(
-    baseUrl = baseUrl
-  ) %>%
-  ROhdsiWebApi::getConcepts(
-    baseUrl = baseUrl
-  ) %>%
-  rename(outcomeConceptId = "conceptId",
-         cohortName = "conceptName") %>%
-  mutate(cohortId = row_number() + 100) %>%
-  select(cohortId, cohortName, outcomeConceptId)
+# TODO: create a negative controls concept set
+#negativeControlOutcomeCohortSet <- ROhdsiWebApi::getConceptSetDefinition(
+#  conceptSetId = 1885090,
+#  baseUrl = baseUrl
+#) %>%
+#  ROhdsiWebApi::resolveConceptSet(
+#    baseUrl = baseUrl
+#  ) %>%
+#  ROhdsiWebApi::getConcepts(
+#    baseUrl = baseUrl
+#  ) %>%
+#  rename(outcomeConceptId = "conceptId",
+#         cohortName = "conceptName") %>%
+#  mutate(cohortId = row_number() + 100) %>%
+#  select(cohortId, cohortName, outcomeConceptId)
 
 # NOTE: Update file location for your study.
-CohortGenerator::writeCsv(
-  x = negativeControlOutcomeCohortSet,
-  file = "inst/sampleStudy/negativeControlOutcomes.csv",
-  warnOnFileNameCaseMismatch = F
-)
+#CohortGenerator::writeCsv(
+#  x = negativeControlOutcomeCohortSet,
+#  file = "inst/sampleStudy/negativeControlOutcomes.csv",
+#  warnOnFileNameCaseMismatch = F
+#)

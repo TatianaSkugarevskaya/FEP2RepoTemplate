@@ -14,6 +14,6 @@
 - Publications: **-**
 - Results explorer: **-**
 
-[This study aims at comparing the effectiveness of the most widely used antipsychotic drugs in patients with first-episode psychotic disorders. This would potentially help bridge the evidence gap in current clinical guidelines where little clear evidence on effectiveness and relapse prevention is present.]
+This study aims at comparing the effectiveness of the most widely used antipsychotic drugs in patients with first-episode psychotic disorders. This would potentially help bridge the evidence gap in current clinical guidelines where little clear evidence on effectiveness and relapse prevention is present.
 
-[The study is a part of the OHDSI Guideline-Driven Evidence 2025 initiative.]
+The study is a part of the OHDSI Guideline-Driven Evidence 2025 initiative.
